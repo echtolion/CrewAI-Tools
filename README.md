@@ -75,11 +75,13 @@ for keyword, analysis in results.items():
 <br>
 
 <br>
+<h2>Take Screenshots from Excel</h2>
+<p>Define the <strong>ScreenshotTask</strong> which utilizes the <em>take_screenshots_from_excel</em> tool.</p>
+
 <pre><code class="language-python">
 from crewai import CrewAI, Agent, Task
 from my_screenshot_tool import MyScreenshotTool  # Import your tool class
 
-# Define the ScreenshotTask which utilizes the take_screenshots_from_excel tool
 class ScreenshotTask(Task):
     def __init__(self, file_path, save_path):
         super().__init__()
@@ -87,48 +89,45 @@ class ScreenshotTask(Task):
         self.save_path = save_path
 
     def execute(self, agent: Agent):
-        # Use the take_screenshots_from_excel tool from the agent's toolbox
         return agent.tools.take_screenshots_from_excel(self.file_path, self.save_path)
 
-# Define a CrewAI agent that includes the take_screenshots_from_excel tool
 class ScreenshotAgent(Agent):
     def __init__(self):
         super().__init__(name="ScreenshotAgent")
         self.tools.register("take_screenshots_from_excel", MyScreenshotTool.take_screenshots_from_excel)  # Register the tool
 
-# Initialize the CrewAI framework and add the agent
 crew_ai = CrewAI()
 screenshot_agent = ScreenshotAgent()
 crew_ai.register_agent(screenshot_agent)
 
-# Define a task with the file path and save path for screenshots
-file_path = "path/to/your/excel/file.xlsx"  # Replace with the actual file path
-save_path = "path/to/save/screenshots"  # Replace with the actual save path
+file_path = "path/to/your/excel/file.xlsx"
+save_path = "path/to/save/screenshots"
 screenshot_task = ScreenshotTask(file_path, save_path)
 
-# Assign the task to the agent and execute
 crew_ai.assign_task(screenshot_task, screenshot_agent.name)
 results = crew_ai.execute()
 
-# Print the file paths to the saved screenshots
 print("Screenshot Results:")
 for idx, screenshot_path in enumerate(results):
     print(f"Screenshot {idx + 1}: {screenshot_path}")
 </code></pre>
+
+<br>
+
+<h2>Capture Screenshots of Websites</h2>
+<p>Define an agent and assign the <em>screenshot_tool</em>.</p>
 
 <pre><code class="language-python">
 from crewai import Agent
 from langchain.agents import Tool
 from my_screenshot_tool import MyScreenshotTool  # Import your tool class
 
-# Create the screenshot_tool as a Tool object
 screenshot_tool = Tool(
     name="TakeScreenshotsTool",
     func=MyScreenshotTool.take_screenshots_from_excel,
     description="Takes screenshots of websites listed in an Excel file."
 )
 
-# Define an agent and assign the screenshot_tool
 screenshot_agent = Agent(
     role='Screenshot Taker',
     goal='Capture screenshots of websites',
@@ -136,10 +135,6 @@ screenshot_agent = Agent(
     tools=[screenshot_tool],
     verbose=True
 )
-
-# In this setup, screenshot_agent is an agent that has been equipped with the screenshot_tool.
-# This agent can now use this tool to capture screenshots of websites autonomously as part of its tasks within a CrewAI setup.
-</code></pre>
 </code></pre>
 
 
