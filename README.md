@@ -70,7 +70,8 @@ results = crew_ai.execute()
 print("Search and Analysis Results:")
 for keyword, analysis in results.items():
     print(f"Keyword: {keyword}, Analysis: {analysis}")
-
+```
+<br><br>
 <h2> Screen Shot Website </h2>
 <p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
 ```python
