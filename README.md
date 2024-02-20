@@ -207,7 +207,7 @@ print(results)
 ```
 
 <p><strong>Execute Tasks and Retrieve Results:</strong> After assigning tasks to the agent and executing them, you can retrieve the results. In this example, we print the file path to the saved search results.
-<br>
-Run the Code: Execute your Python script containing the CrewAI integration code. Make sure all paths and configurations are correctly set.
-<br>
+<br><br>
+<strong>Run the Code:</strong> Execute your Python script containing the CrewAI integration code. Make sure all paths and configurations are correctly set.
+<br><br>
 With these steps, you should be able to integrate the GoogleSearchTool with CrewAI and utilize it to perform Google searches and extract content. Adjust the code and configurations as needed to fit your specific use case and environment.</p>
