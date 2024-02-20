@@ -1,39 +1,32 @@
-from crewai import Agent, Task, Crew, Process
+from langchain.tools import tool
 
-# Define the Skill Generator Agent
-skill_generator = Agent(
-    role='Skill Generator',
-    goal='Create new skills based on provided descriptions',
-    backstory="An AI skilled in parsing skill descriptions and crafting detailed implementations."
-)
+@tool
+def build_autogen_skill_tool(input_string: str) -> str:
+    # Parse the input string to extract parameters
+    params = input_string.split('|')
+    skill_description = params[0].strip() if params else None
+    app_directory = params[1].strip() if len(params) > 1 else '/home/emoore/TaskWeaver/project/'
 
-# Define the task for generating a new skill
-skill_generation_task = Task(
-    description='Generate a new skill based on the given description. The skill should handle arguments, provide error feedback, include usage instructions, and avoid hardcoded values.',
-    agent=skill_generator
-)
-
-# Create the crew with the Skill Generator agent and the task
-crew = Crew(
-    agents=[skill_generator],
-    tasks=[skill_generation_task],
-    process=Process.sequential
-)
-
-# Function to kick off the skill generation process
-def build_autogen_skill(skill_description):
+    # Check if skill_description is provided
     if not skill_description:
-        return "Usage: build_autogen_skill(skill_description) - skill_description is a string describing the skill to be created."
-    
-    # Update the task description with the specific skill description
-    skill_generation_task.description += f"\nSkill description: {skill_description}"
-    
-    # Get the crew to work on the task
-    result = crew.kickoff()
-    return result
+        return "Error: skill_description is required. Usage: build_autogen_skill_tool('skill_description|app_directory')."
 
-# Test the functionality with a sample skill description
+    # Assuming TaskWeaverApp and related functionality are defined elsewhere and accessible
+    from taskweaver.app.app import TaskWeaverApp
+    app = TaskWeaverApp(app_dir=app_directory)
+    session = app.get_session()
+    
+    # Detailed prompt for creating the skill
+    detailed_prompt = ("Create a robust Python function to be used as a skill. The function should handle arguments appropriately, "
+                       "be verbose with errors for troubleshooting, include usage instructions when called incorrectly, "
+                       "and ensure no hardcoded values are present outside of a test block. "
+                       f"Skill description: {skill_description}")
+    
+    # Send the prompt to the session and get the response
+    response_round = session.send_message(detailed_prompt)
+    return response_round.to_dict()
+
+# Usage example for the tool
 if __name__ == '__main__':
-    test_skill_description = "create a skill to search for an article on wikipedia and return the summary"
-    test_result = build_autogen_skill(test_skill_description)
-    print(test_result)
+    test_input = "create a skill to search for an article on Wikipedia and return the summary|/home/emoore/TaskWeaver/project/"
+    print(build_autogen_skill_tool(test_input))
