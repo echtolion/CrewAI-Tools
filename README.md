@@ -78,27 +78,27 @@ for keyword, analysis in results.items():
 ```python
 
 from crewai import Agent
-from langchain.agents import Tool
-from my_screenshot_tool import MyScreenshotTool  # Import your tool class
+from langchain.agents import Tool  # Assuming `autogen_skill_tool` is defined elsewhere
 
-# Create the screenshot_tool as a Tool object
-screenshot_tool = Tool(
-    name="TakeScreenshotsTool",
-    func=MyScreenshotTool.take_screenshots_from_excel,
-    description="Takes screenshots of websites listed in an Excel file."
+# Create the autogen_skill_tool as a Tool object
+autogen_skill = Tool(
+    name="AutogenSkillTool",
+    func=autogen_skill_tool,
+    description="Generates Python code for a tool based on a skill description."
 )
 
-# Define an agent and assign the screenshot_tool
-screenshot_agent = Agent(
-    role='Screenshot Taker',
-    goal='Capture screenshots of websites',
-    backstory='An agent tasked with capturing screenshots of websites listed in an Excel file.',
-    tools=[screenshot_tool],
+# Define an agent and assign the autogen_skill_tool
+developer_agent = Agent(
+    role='Developer',
+    goal='Generate Python tools based on skill descriptions',
+    backstory='An AI developer capable of translating skill descriptions into executable Python tools.',
+    tools=[autogen_skill],  # Assign the autogen_skill_tool to the agent
     verbose=True
 )
 
-# In this setup, screenshot_agent is an agent that has been equipped with the screenshot_tool.
-# This agent can now use this tool to capture screenshots of websites autonomously as part of its tasks within a CrewAI setup.
+# In this setup, developer_agent is an agent that has been equipped with the autogen_skill_tool.
+# This agent can now use this tool to generate Python functions based on skill descriptions autonomously
+# as part of its tasks within a CrewAI setup.
 
 ```
 
