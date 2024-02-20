@@ -74,6 +74,7 @@ for keyword, analysis in results.items():
 <br><br>
 <h2> Screen Shot Website </h2>
 <p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
+
 ```python
 
 from crewai import Agent
