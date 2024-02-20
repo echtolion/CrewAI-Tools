@@ -1,5 +1,6 @@
 <h1>CrewAI-Tools</h1>
-
+<p>All untested for now, will test when I can and fix them.</p>
+<br>
 <h2>Auto Skills</h2>
 <p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
 
