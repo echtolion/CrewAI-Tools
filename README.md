@@ -151,9 +151,9 @@ screenshot_agent = Agent(
 
 <h2>Search and Extract Content</h2>
 <p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
-<p>Install Dependencies: Ensure you have installed both CrewAI and Undetected Chrome Driver as outlined in the previous steps.
+<p><strong>Install Dependencies:</strong> Ensure you have installed both CrewAI and Undetected Chrome Driver as outlined in the previous steps.
 <br>
-Define the Tool Class: The GoogleSearchTool class should be defined within your project. Make sure it includes the necessary functionality to perform Google searches and extract content as you desire.</p>
+<strong>Define the Tool Class:</strong> The GoogleSearchTool class should be defined within your project. Make sure it includes the necessary functionality to perform Google searches and extract content as you desire.</p>
 
 Integrate with CrewAI:
 ```python
@@ -183,7 +183,7 @@ crew_ai.register_agent(google_search_agent)
 
 ```
 
-<p>Define and Assign Tasks: Now that the google_search_agent is equipped with the GoogleSearchTool, you can define tasks and assign them to the agent for execution.</p>
+<p><strong>Define and Assign Tasks:</strong> Now that the google_search_agent is equipped with the GoogleSearchTool, you can define tasks and assign them to the agent for execution.</p>
 
 
 ```python
@@ -206,7 +206,7 @@ print(results)
 
 ```
 
-<p>Execute Tasks and Retrieve Results: After assigning tasks to the agent and executing them, you can retrieve the results. In this example, we print the file path to the saved search results.
+<p><strong>Execute Tasks and Retrieve Results:</strong> After assigning tasks to the agent and executing them, you can retrieve the results. In this example, we print the file path to the saved search results.
 <br>
 Run the Code: Execute your Python script containing the CrewAI integration code. Make sure all paths and configurations are correctly set.
 <br>
