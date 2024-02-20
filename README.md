@@ -1,4 +1,6 @@
 # CrewAI-Tools
+
+<h2>Auto Skills</h2>
 ```python
 # Tools for CrewAI
 
