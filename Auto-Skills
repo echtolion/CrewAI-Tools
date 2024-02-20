@@ -1,0 +1,39 @@
+from crewai import Agent, Task, Crew, Process
+
+# Define the Skill Generator Agent
+skill_generator = Agent(
+    role='Skill Generator',
+    goal='Create new skills based on provided descriptions',
+    backstory="An AI skilled in parsing skill descriptions and crafting detailed implementations."
+)
+
+# Define the task for generating a new skill
+skill_generation_task = Task(
+    description='Generate a new skill based on the given description. The skill should handle arguments, provide error feedback, include usage instructions, and avoid hardcoded values.',
+    agent=skill_generator
+)
+
+# Create the crew with the Skill Generator agent and the task
+crew = Crew(
+    agents=[skill_generator],
+    tasks=[skill_generation_task],
+    process=Process.sequential
+)
+
+# Function to kick off the skill generation process
+def build_autogen_skill(skill_description):
+    if not skill_description:
+        return "Usage: build_autogen_skill(skill_description) - skill_description is a string describing the skill to be created."
+    
+    # Update the task description with the specific skill description
+    skill_generation_task.description += f"\nSkill description: {skill_description}"
+    
+    # Get the crew to work on the task
+    result = crew.kickoff()
+    return result
+
+# Test the functionality with a sample skill description
+if __name__ == '__main__':
+    test_skill_description = "create a skill to search for an article on wikipedia and return the summary"
+    test_result = build_autogen_skill(test_skill_description)
+    print(test_result)
