@@ -5,7 +5,7 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import WebDriverException
-from webdriver_manager.chrome import ChromeDriverManager
+from undetected_chromedriver.v2 import Chrome, ChromeOptions
 import time
 from selenium.webdriver.common.by import By
 from langchain.base_tool import BaseTool
@@ -27,8 +27,7 @@ class GoogleSearchTool(BaseTool):
             return None
 
     def search_and_extract_content(self, search_query):
-        binary_path = '/opt/chromedriver' if os.path.exists('/opt/chromedriver') else None
-        options = webdriver.ChromeOptions()
+        options = ChromeOptions()
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
@@ -37,8 +36,7 @@ class GoogleSearchTool(BaseTool):
             proxy = random.choice(self.proxies)
             options.add_argument(f'--proxy-server={proxy}')
 
-        service = Service(ChromeDriverManager(path=binary_path).install()) if binary_path is not None else Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
+        driver = Chrome(options=options)
 
         try:
             # Navigate to Google
