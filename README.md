@@ -28,3 +28,4 @@ developer_agent = Agent(
 # In this setup, developer_agent is an agent that has been equipped with the autogen_skill_tool. This agent can now use this tool to generate Python functions based on skill descriptions autonomously as part of its tasks within a CrewAI setup.
 ```
 
+<br>
