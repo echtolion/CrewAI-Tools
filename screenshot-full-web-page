@@ -49,18 +49,3 @@ class MyScreenshotTool:
 
         finally:
             driver.quit()
-
-# Set the file path to the Excel file containing URLs
-file_path = "path/to/your/excel/file.xlsx"  # Replace with the actual file path
-
-# Set the directory path where screenshots will be saved
-save_path = "path/to/save/screenshots"  # Replace with the actual save path
-
-# Create an instance of MyScreenshotTool
-my_tool = MyScreenshotTool()
-
-# Call the take_screenshots_from_excel method with the file path and save path
-result = my_tool.take_screenshots_from_excel(file_path, save_path)
-
-# Print the file paths to the saved screenshots
-print(result)
