@@ -151,20 +151,24 @@ screenshot_agent = Agent(
 
 <h2>Search and Extract Content</h2>
 <p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
+<p>Install Dependencies: Ensure you have installed both CrewAI and Undetected Chrome Driver as outlined in the previous steps.
+<br>
+Define the Tool Class: The GoogleSearchTool class should be defined within your project. Make sure it includes the necessary functionality to perform Google searches and extract content as you desire.</p>
 
+Integrate with CrewAI:
 ```python
-from crewai import Agent
+from crewai import CrewAI, Agent, Task
 from langchain.agents import Tool
-from google_search_tool import GoogleSearchTool
+from path.to.google_search_tool import GoogleSearchTool
 
-# Create the GoogleSearchTool as a Tool object
+# Define the GoogleSearchTool as a Tool object
 google_search_tool = Tool(
     name="GoogleSearchTool",
     func=GoogleSearchTool,
     description="Performs a Google search and extracts content from the search results."
 )
 
-# Define an agent and assign the GoogleSearchTool
+# Define a CrewAI agent that includes the GoogleSearchTool
 google_search_agent = Agent(
     role='SearchEngineUser',
     goal='Perform Google searches and extract content',
@@ -173,54 +177,37 @@ google_search_agent = Agent(
     verbose=True
 )
 
-# In this setup, google_search_agent is an agent equipped with the GoogleSearchTool.
-# This agent can now use this tool to perform Google searches and extract content as part of its tasks within a CrewAI setup.
+# Initialize the CrewAI framework and add the agent
+crew_ai = CrewAI()
+crew_ai.register_agent(google_search_agent)
 
 ```
 
-<p>or with langchain like this</p>
+<p>Define and Assign Tasks: Now that the google_search_agent is equipped with the GoogleSearchTool, you can define tasks and assign them to the agent for execution.</p>
+
 
 ```python
 
-from langchain import LangChain, Agent, Task
-from langchain.tools import Tool
-from google_search_tool import GoogleSearchTool
-
-# Define the GoogleSearchTask which utilizes the GoogleSearchTool
-class GoogleSearchTask(Task):
-    def __init__(self, search_query, save_path='./', filename='search_results.json'):
-        super().__init__()
-        self.search_query = search_query
-        self.save_path = save_path
-        self.filename = filename
-
-    def execute(self, agent: Agent):
-        # Use the GoogleSearchTool from the agent's toolbox
-        return agent.tools.GoogleSearchTool.execute(self.search_query, self.save_path, self.filename)
-
-# Define a LangChain agent that includes the GoogleSearchTool
-class GoogleSearchAgent(Agent):
-    def __init__(self):
-        super().__init__(name="GoogleSearchAgent")
-        self.tools.register("GoogleSearchTool", GoogleSearchTool())  # Register the tool
-
-# Initialize the LangChain framework and add the agent
-lang_chain = LangChain()
-google_search_agent = GoogleSearchAgent()
-lang_chain.register_agent(google_search_agent)
-
-# Define a task with the search query and save path for search results
+# Define a task with the search query
 search_query = "your search query"
-save_path = "path/to/save/search_results"
-search_results_filename = "search_results.json"
-google_search_task = GoogleSearchTask(search_query, save_path, search_results_filename)
+google_search_task = Task(
+    name="GoogleSearchTask",
+    func=google_search_agent.tools.GoogleSearchTool.execute,
+    args=[search_query]
+)
 
 # Assign the task to the agent and execute
-lang_chain.assign_task(google_search_task, google_search_agent.name)
-results = lang_chain.execute()
+crew_ai.assign_task(google_search_task, google_search_agent.name)
+results = crew_ai.execute()
 
-# Print the file path to the saved search results
+# Print the results (file path to the saved search results)
 print("Search Results File Path:")
 print(results)
 
 ```
+
+<p>Execute Tasks and Retrieve Results: After assigning tasks to the agent and executing them, you can retrieve the results. In this example, we print the file path to the saved search results.
+<br>
+Run the Code: Execute your Python script containing the CrewAI integration code. Make sure all paths and configurations are correctly set.
+<br>
+With these steps, you should be able to integrate the GoogleSearchTool with CrewAI and utilize it to perform Google searches and extract content. Adjust the code and configurations as needed to fit your specific use case and environment.</p>
