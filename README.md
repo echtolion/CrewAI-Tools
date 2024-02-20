@@ -71,3 +71,34 @@ print("Search and Analysis Results:")
 for keyword, analysis in results.items():
     print(f"Keyword: {keyword}, Analysis: {analysis}")
 
+<h2> Screen Shot Website </h2>
+<p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
+```python
+
+from crewai import Agent
+from my_screenshot_tool import MyScreenshotTool  # Import your tool class
+
+# Set the file path to the Excel file containing URLs
+file_path = "path/to/your/excel/file.xlsx"  # Replace with the actual file path
+
+# Set the directory path where screenshots will be saved
+save_path = "path/to/save/screenshots"  # Replace with the actual save path
+
+# Create an instance of MyScreenshotTool
+my_tool = MyScreenshotTool()
+
+# Define your agent
+agent = Agent(
+    role='Screenshot Taker',
+    goal='Capture screenshots of websites',
+    backstory='An agent tasked with capturing screenshots of websites listed in an Excel file.',
+    tools=[my_tool.take_screenshots_from_excel],  # Assign your tool to the agent
+    verbose=True
+)
+
+# Use the tool within the agent
+result = agent.use_tool("Take website screenshots", file_path, save_path)
+
+# Print the file paths to the saved screenshots
+print(result)
+```
