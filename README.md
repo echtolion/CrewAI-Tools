@@ -72,7 +72,37 @@ print("Search and Analysis Results:")
 for keyword, analysis in results.items():
     print(f"Keyword: {keyword}, Analysis: {analysis}")
 ```
-<br><br>
+<br>
+<p>Or you can do this:</p>
+
+```python
+
+from crewai import Agent
+from langchain.agents import Tool
+from my_screenshot_tool import MyScreenshotTool  # Import your tool class
+
+# Create the screenshot_tool as a Tool object
+screenshot_tool = Tool(
+    name="TakeScreenshotsTool",
+    func=MyScreenshotTool.take_screenshots_from_excel,
+    description="Takes screenshots of websites listed in an Excel file."
+)
+
+# Define an agent and assign the screenshot_tool
+screenshot_agent = Agent(
+    role='Screenshot Taker',
+    goal='Capture screenshots of websites',
+    backstory='An agent tasked with capturing screenshots of websites listed in an Excel file.',
+    tools=[screenshot_tool],
+    verbose=True
+)
+
+# In this setup, screenshot_agent is an agent that has been equipped with the screenshot_tool.
+# This agent can now use this tool to capture screenshots of websites autonomously as part of its tasks within a CrewAI setup.
+
+```
+
+<br>
 <h2> Screen Shot Website </h2>
 <p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
 
