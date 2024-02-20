@@ -149,3 +149,78 @@ screenshot_agent = Agent(
 # This agent can now use this tool to capture screenshots of websites autonomously as part of its tasks within a CrewAI setup.
 ```
 
+<h2>Search and Extract Content</h2>
+<p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
+
+```python
+from crewai import Agent
+from langchain.agents import Tool
+from path.to.google_search_tool import GoogleSearchTool
+
+# Create the GoogleSearchTool as a Tool object
+google_search_tool = Tool(
+    name="GoogleSearchTool",
+    func=GoogleSearchTool,
+    description="Performs a Google search and extracts content from the search results."
+)
+
+# Define an agent and assign the GoogleSearchTool
+google_search_agent = Agent(
+    role='SearchEngineUser',
+    goal='Perform Google searches and extract content',
+    backstory='An agent tasked with searching Google and extracting content for analysis.',
+    tools=[google_search_tool],
+    verbose=True
+)
+
+# In this setup, google_search_agent is an agent equipped with the GoogleSearchTool.
+# This agent can now use this tool to perform Google searches and extract content as part of its tasks within a CrewAI setup.
+
+```
+
+<p>or with langchain like this</p>
+
+```python
+
+from langchain import LangChain, Agent, Task
+from langchain.tools import Tool
+from path.to.google_search_tool import GoogleSearchTool
+
+# Define the GoogleSearchTask which utilizes the GoogleSearchTool
+class GoogleSearchTask(Task):
+    def __init__(self, search_query, save_path='./', filename='search_results.json'):
+        super().__init__()
+        self.search_query = search_query
+        self.save_path = save_path
+        self.filename = filename
+
+    def execute(self, agent: Agent):
+        # Use the GoogleSearchTool from the agent's toolbox
+        return agent.tools.GoogleSearchTool.execute(self.search_query, self.save_path, self.filename)
+
+# Define a LangChain agent that includes the GoogleSearchTool
+class GoogleSearchAgent(Agent):
+    def __init__(self):
+        super().__init__(name="GoogleSearchAgent")
+        self.tools.register("GoogleSearchTool", GoogleSearchTool())  # Register the tool
+
+# Initialize the LangChain framework and add the agent
+lang_chain = LangChain()
+google_search_agent = GoogleSearchAgent()
+lang_chain.register_agent(google_search_agent)
+
+# Define a task with the search query and save path for search results
+search_query = "your search query"
+save_path = "path/to/save/search_results"
+search_results_filename = "search_results.json"
+google_search_task = GoogleSearchTask(search_query, save_path, search_results_filename)
+
+# Assign the task to the agent and execute
+lang_chain.assign_task(google_search_task, google_search_agent.name)
+results = lang_chain.execute()
+
+# Print the file path to the saved search results
+print("Search Results File Path:")
+print(results)
+
+```
