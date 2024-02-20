@@ -29,7 +29,7 @@ developer_agent = Agent(
 ```
 
 <br>
-<h2>Goole People Also Searched</h2>
+<h2>Google People Also Searched</h2>
 <br>
 
 ```python
