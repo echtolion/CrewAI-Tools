@@ -26,7 +26,7 @@ class GoogleSearchTool(BaseTool):
         else:
             return None
 
-    def search_and_extract_content(self, search_query, save_path='./', filename='search_results.json'):
+    def search_and_extract_content(self, search_query):
         binary_path = '/opt/chromedriver' if os.path.exists('/opt/chromedriver') else None
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
@@ -51,33 +51,26 @@ class GoogleSearchTool(BaseTool):
             search_box.submit()
             time.sleep(5)  # Wait for search results to load
 
-            page_text = driver.find_element(By.TAG_NAME, 'body').text  
-            links = driver.find_elements(By.TAG_NAME, 'a')  
-            urls = {link.text: link.get_attribute('href') for link in links if link.text and link.get_attribute('href')}  
-    
-            # Extract image links and alt text  
-            images = driver.find_elements(By.TAG_NAME, 'img')  
-            image_info = {img.get_attribute('src'): img.get_attribute('alt') for img in images if img.get_attribute('src')}  
-
-            content = {
-                'text': page_text,
-                'urls': urls,
-                'images': image_info
+            # Get the response as a dictionary
+            response = {
+                'page_text': driver.find_element(By.TAG_NAME, 'body').text,
+                'urls': {link.text: link.get_attribute('href') for link in driver.find_elements(By.TAG_NAME, 'a') if link.text and link.get_attribute('href')},
+                'images': {img.get_attribute('src'): img.get_attribute('alt') for img in driver.find_elements(By.TAG_NAME, 'img') if img.get_attribute('src')}
             }
 
             # Ensure save_path exists
+            save_path = 'path/to/save/search_results'
             if not os.path.exists(save_path):
                 os.makedirs(save_path)
 
-            # Save the extracted content
-            with open(os.path.join(save_path, filename), 'w', encoding='utf-8') as file:
-                json.dump(content, file, indent=4)
+            # Save the response as JSON
+            with open(os.path.join(save_path, 'search_results.json'), 'w', encoding='utf-8') as file:
+                json.dump(response, file, indent=4)
 
         except WebDriverException as e:
             print(f'Error occurred: {e}')
         finally:
             driver.quit()
 
-    def execute(self, search_query, save_path='./', filename='search_results.json'):
-        self.search_and_extract_content(search_query, save_path, filename)
-        return os.path.join(save_path, filename)
+    def execute(self, search_query):
+        self.search_and_extract_content(search_query)
