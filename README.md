@@ -2,11 +2,9 @@
 
 <h2>Auto Skills</h2>
 
+<p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
+
 ```python
-# Tools for CrewAI
-
-# To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:
-
 # python
 
 from crewai import Agent
