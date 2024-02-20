@@ -78,7 +78,8 @@ for keyword, analysis in results.items():
 <h2>Take Screenshots from Excel</h2>
 <p>Define the <strong>ScreenshotTask</strong> which utilizes the <em>take_screenshots_from_excel</em> tool.</p>
 
-<pre><code class="language-python">
+```python
+
 from crewai import CrewAI, Agent, Task
 from my_screenshot_tool import MyScreenshotTool  # Import your tool class
 
@@ -110,14 +111,16 @@ results = crew_ai.execute()
 print("Screenshot Results:")
 for idx, screenshot_path in enumerate(results):
     print(f"Screenshot {idx + 1}: {screenshot_path}")
-</code></pre>
+
+```
 
 <br>
 
 <h2>Capture Screenshots of Websites</h2>
 <p>Define an agent and assign the <em>screenshot_tool</em>.</p>
 
-<pre><code class="language-python">
+```python
+
 from crewai import Agent
 from langchain.agents import Tool
 from my_screenshot_tool import MyScreenshotTool  # Import your tool class
@@ -135,7 +138,7 @@ screenshot_agent = Agent(
     tools=[screenshot_tool],
     verbose=True
 )
-</code></pre>
+```
 
 
 <h2>Search and Extract Content</h2>
@@ -144,7 +147,8 @@ screenshot_agent = Agent(
 <br>
 <strong>Define the Tool Class:</strong> The GoogleSearchTool class should be defined within your project. Make sure it includes the necessary functionality to perform Google searches and extract content as you desire.</p>
 
-Integrate with CrewAI:
+<p>Integrate with CrewAI:</p>
+
 ```python
 from crewai import CrewAI, Agent, Task
 from langchain.agents import Tool
