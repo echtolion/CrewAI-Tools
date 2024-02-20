@@ -75,11 +75,7 @@ for keyword, analysis in results.items():
 <br>
 
 <br>
-<h2> Screen Shot Website </h2>
-<p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
-
-```python
-
+<pre><code class="language-python">
 from crewai import CrewAI, Agent, Task
 from my_screenshot_tool import MyScreenshotTool  # Import your tool class
 
@@ -118,13 +114,9 @@ results = crew_ai.execute()
 print("Screenshot Results:")
 for idx, screenshot_path in enumerate(results):
     print(f"Screenshot {idx + 1}: {screenshot_path}")
+</code></pre>
 
-```
-
-<p>or you can do this.</p>
-
-```python
-
+<pre><code class="language-python">
 from crewai import Agent
 from langchain.agents import Tool
 from my_screenshot_tool import MyScreenshotTool  # Import your tool class
@@ -147,7 +139,9 @@ screenshot_agent = Agent(
 
 # In this setup, screenshot_agent is an agent that has been equipped with the screenshot_tool.
 # This agent can now use this tool to capture screenshots of websites autonomously as part of its tasks within a CrewAI setup.
-```
+</code></pre>
+</code></pre>
+
 
 <h2>Search and Extract Content</h2>
 <p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
