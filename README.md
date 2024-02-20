@@ -1,7 +1,6 @@
 <h1>CrewAI-Tools</h1>
 
 <h2>Auto Skills</h2>
-
 <p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
 
 ```python
@@ -31,6 +30,7 @@ developer_agent = Agent(
 
 <br>
 <h2>Google People Also Searched</h2>
+<p>To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:</p>
 <br>
 
 ```python
