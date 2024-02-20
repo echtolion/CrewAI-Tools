@@ -155,7 +155,7 @@ screenshot_agent = Agent(
 ```python
 from crewai import Agent
 from langchain.agents import Tool
-from path.to.google_search_tool import GoogleSearchTool
+from google_search_tool import GoogleSearchTool
 
 # Create the GoogleSearchTool as a Tool object
 google_search_tool = Tool(
@@ -184,7 +184,7 @@ google_search_agent = Agent(
 
 from langchain import LangChain, Agent, Task
 from langchain.tools import Tool
-from path.to.google_search_tool import GoogleSearchTool
+from google_search_tool import GoogleSearchTool
 
 # Define the GoogleSearchTask which utilizes the GoogleSearchTool
 class GoogleSearchTask(Task):
