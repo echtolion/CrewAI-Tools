@@ -235,8 +235,8 @@ scraper_agent = Agent(
 )
 
 ```
-<h2>To utilize the previously discussed Selenium scraping tool with proxy support in a CrewAI environment, you'll need to follow these steps to create and integrate an agent that uses this tool. Here's a simplified guide to help you get started:
-Step 1: Define the Tool
+<p>To utilize the previously discussed Selenium scraping tool with proxy support in a CrewAI environment, you'll need to follow these steps to create and integrate an agent that uses this tool. <strong>Here's a simplified guide to help you get started:</strong></p>
+<h2>Step 1: Define the Tool</h2>
 <br>
 <p>First, ensure your tool is correctly defined using the @tool decorator with proxy support as discussed. This tool should be capable of scraping data using Selenium and undetected ChromeDriver, with the ability to randomly select a proxy from a list specified in an .env file.</p>
 <br>
