@@ -1,8 +1,8 @@
 # CrewAI-Tools
 ```python
-Tools for CrewAI
+# Tools for CrewAI
 
-To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:
+# To make this tool available for agents to use within CrewAI, you would then assign this tool to an agent like so:
 
 python
 
@@ -25,6 +25,6 @@ developer_agent = Agent(
     verbose=True
 )
 
-In this setup, developer_agent is an agent that has been equipped with the autogen_skill_tool. This agent can now use this tool to generate Python functions based on skill descriptions autonomously as part of its tasks within a CrewAI setup.
+# In this setup, developer_agent is an agent that has been equipped with the autogen_skill_tool. This agent can now use this tool to generate Python functions based on skill descriptions autonomously as part of its tasks within a CrewAI setup.
 ```
 
