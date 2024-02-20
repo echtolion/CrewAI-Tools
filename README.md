@@ -77,30 +77,41 @@ for keyword, analysis in results.items():
 
 ```python
 
-from crewai import Agent
+from crewai import CrewAI, Agent, Task
 from my_screenshot_tool import MyScreenshotTool  # Import your tool class
 
-# Set the file path to the Excel file containing URLs
+# Define the ScreenshotTask which utilizes the take_screenshots_from_excel tool
+class ScreenshotTask(Task):
+    def __init__(self, file_path, save_path):
+        super().__init__()
+        self.file_path = file_path
+        self.save_path = save_path
+
+    def execute(self, agent: Agent):
+        # Use the take_screenshots_from_excel tool from the agent's toolbox
+        return agent.tools.take_screenshots_from_excel(self.file_path, self.save_path)
+
+# Define a CrewAI agent that includes the take_screenshots_from_excel tool
+class ScreenshotAgent(Agent):
+    def __init__(self):
+        super().__init__(name="ScreenshotAgent")
+        self.tools.register("take_screenshots_from_excel", MyScreenshotTool.take_screenshots_from_excel)  # Register the tool
+
+# Initialize the CrewAI framework and add the agent
+crew_ai = CrewAI()
+screenshot_agent = ScreenshotAgent()
+crew_ai.register_agent(screenshot_agent)
+
+# Define a task with the file path and save path for screenshots
 file_path = "path/to/your/excel/file.xlsx"  # Replace with the actual file path
-
-# Set the directory path where screenshots will be saved
 save_path = "path/to/save/screenshots"  # Replace with the actual save path
+screenshot_task = ScreenshotTask(file_path, save_path)
 
-# Create an instance of MyScreenshotTool
-my_tool = MyScreenshotTool()
-
-# Define your agent
-agent = Agent(
-    role='Screenshot Taker',
-    goal='Capture screenshots of websites',
-    backstory='An agent tasked with capturing screenshots of websites listed in an Excel file.',
-    tools=[my_tool.take_screenshots_from_excel],  # Assign your tool to the agent
-    verbose=True
-)
-
-# Use the tool within the agent
-result = agent.use_tool("Take website screenshots", file_path, save_path)
+# Assign the task to the agent and execute
+crew_ai.assign_task(screenshot_task, screenshot_agent.name)
+results = crew_ai.execute()
 
 # Print the file paths to the saved screenshots
-print(result)
-```
+print("Screenshot Results:")
+for idx, screenshot_path in enumerate(results):
+    print(f"Screenshot {idx + 1}: {screenshot_path}")
