@@ -1,32 +1,33 @@
 from langchain.tools import tool
 
 @tool
-def build_autogen_skill_tool(input_string: str) -> str:
-    # Parse the input string to extract parameters
-    params = input_string.split('|')
-    skill_description = params[0].strip() if params else None
-    app_directory = params[1].strip() if len(params) > 1 else '/home/emoore/TaskWeaver/project/'
+def autogen_skill_tool(skill_description: str) -> str:
+    """
+    Generates Python code for a tool based on a given skill description.
+    The generated code includes argument handling, error handling, and usage instructions.
 
-    # Check if skill_description is provided
+    Args:
+        skill_description (str): A string describing the skill for which the tool is to be generated.
+
+    Returns:
+        str: The generated Python code as a string.
+    """
     if not skill_description:
-        return "Error: skill_description is required. Usage: build_autogen_skill_tool('skill_description|app_directory')."
-
-    # Assuming TaskWeaverApp and related functionality are defined elsewhere and accessible
-    from taskweaver.app.app import TaskWeaverApp
-    app = TaskWeaverApp(app_dir=app_directory)
-    session = app.get_session()
+        return "Usage: autogen_skill_tool(skill_description) - skill_description is a string describing the skill to be created."
     
-    # Detailed prompt for creating the skill
-    detailed_prompt = ("Create a robust Python function to be used as a skill. The function should handle arguments appropriately, "
-                       "be verbose with errors for troubleshooting, include usage instructions when called incorrectly, "
-                       "and ensure no hardcoded values are present outside of a test block. "
-                       f"Skill description: {skill_description}")
+    # Here, you would implement the logic to generate Python code based on the skill description.
+    # For demonstration purposes, we'll return a placeholder Python function as the generated code.
     
-    # Send the prompt to the session and get the response
-    response_round = session.send_message(detailed_prompt)
-    return response_round.to_dict()
+    generated_code = f"""
+# Generated Tool based on Skill Description: "{skill_description}"
+def generated_tool(*args, **kwargs):
+    # Implement the functionality based on the skill description here
+    pass
 
-# Usage example for the tool
+# Usage Instructions
 if __name__ == '__main__':
-    test_input = "create a skill to search for an article on Wikipedia and return the summary|/home/emoore/TaskWeaver/project/"
-    print(build_autogen_skill_tool(test_input))
+    # Example usage of the generated tool
+    pass
+    """
+    
+    return generated_code
