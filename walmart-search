@@ -1,0 +1,11 @@
+from langchain.tools import tool
+import requests
+
+@tool("Walmart Item Search")
+def search_walmart_items(keyword: str) -> str:
+    """Search for items in Walmart catalog using a keyword."""
+    URL = "https://api.walmartlabs.com/v1/search"
+    API_KEY = "your_walmart_api_key"
+    PARAMS = {'query': keyword, 'format': 'json', 'apiKey': API_KEY}
+    response = requests.get(URL, params=PARAMS)
+    return response.text
