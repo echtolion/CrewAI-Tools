@@ -1,0 +1,16 @@
+from langchain.tools import tool
+from crewai import Agent
+import elevenlabs
+
+@tool
+def convert_voice_to_text(voice_data: bytes) -> str:
+    """Convert voice command to text using Eleven Labs TTS."""
+    api_key = "your_eleven_labs_api_key"
+    client = elevenlabs.Client(api_key=api_key)
+    text = client.speech_to_text(voice_data)
+    return text
+
+# Usage example
+voice_data = b'...'  # Your voice data here
+text_command = convert_voice_to_text(voice_data)
+print(text_command)
