@@ -1,0 +1,13 @@
+@tool("Walmart Order Processing")
+def process_walmart_order(item_ids: list, quantities: list, customer_details: dict) -> str:
+    """Process an order on Walmart based on item IDs and quantities."""
+    URL = "https://api.walmartlabs.com/v1/orders"
+    API_KEY = "your_walmart_api_key"
+    HEADERS = {'Content-Type': 'application/json', 'apiKey': API_KEY}
+    data = {
+        'itemIds': item_ids,
+        'quantities': quantities,
+        'customerDetails': customer_details
+    }
+    response = requests.post(URL, headers=HEADERS, json=data)
+    return response.text
