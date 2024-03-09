@@ -1,0 +1,80 @@
+# Using VoiceRSS Tools with CrewAI Agents
+
+## Introduction
+
+This README provides guidance on how to utilize the VoiceRSS text-to-speech (TTS) tools within the CrewAI framework. These tools are designed to convert text into speech using the VoiceRSS API, with capabilities to handle both single text inputs and longer texts by splitting them into manageable chunks.
+
+## Prerequisites
+
+Before integrating VoiceRSS tools with CrewAI agents, ensure you have the following:
+
+- A VoiceRSS API key. Obtain it by registering at the VoiceRSS website.
+- The CrewAI and LangChain frameworks installed in your environment.
+- The `.env` file in your project's root directory containing your VoiceRSS API key as `Voice_RSS_API_KEY=<your_api_key>`.
+
+## Tool Descriptions
+
+### Single Text to Speech Conversion
+
+**Tool Name:** VoiceRSS_TTS
+
+This tool converts a single, short text input into speech audio content.
+
+**Parameters:**
+
+- `text` (str): Text to be converted to speech.
+- `lang` (str, optional): Language code (default: "en-us").
+- `voice` (str, optional): Voice selection (default: "Linda").
+- Other optional parameters include rate, format, ssml, and base64.
+
+**Returns:** The speech audio content in binary format or as a Base64 encoded string.
+
+### Large Text to Speech Conversion in Chunks
+
+**Tool Name:** VoiceRSS_TTS_Chunks
+
+Splits larger texts into chunks and processes each with the VoiceRSS API to overcome the potential API text length limitation.
+
+**Parameters:**
+
+Similar to VoiceRSS_TTS, with an additional internal `chunk_size` parameter to determine the size of each text chunk.
+
+**Returns:** A list of speech audio contents for each chunk.
+
+## Setup and Configuration
+
+- Ensure the `.env` file with your VoiceRSS API key is set up correctly.
+- Import the tools into your CrewAI agent's script:
+
+```python
+from your_tool_script import voice_rss_text_to_speech, voice_rss_tts_chunks
+```
+
+- Use the `@tool` decorator from LangChain to register these functions as tools for your CrewAI agent.
+
+## Example Usage
+
+### Integrating Single Text to Speech Tool
+
+After defining the VoiceRSS_TTS tool:
+
+```python
+agent.use_tool(voice_rss_text_to_speech, text="Hello, world!")
+```
+
+### Integrating Large Text to Speech Conversion Tool
+
+For handling larger texts with VoiceRSS_TTS_Chunks:
+
+```python
+text = "Your long text here..."
+chunks_audio_contents = agent.use_tool(voice_rss_tts_chunks, text=text)
+# Process or save the audio content as needed
+```
+
+## Conclusion
+
+Integrating VoiceRSS TTS tools with CrewAI agents allows for the dynamic generation of speech from text, enhancing the interactivity and accessibility of applications developed within the CrewAI framework. Remember to respect VoiceRSS's usage policies and manage your API keys securely.
+
+For any questions or issues regarding the VoiceRSS API or CrewAI integration, refer to the respective documentation or contact support through their websites.
+``` ````
