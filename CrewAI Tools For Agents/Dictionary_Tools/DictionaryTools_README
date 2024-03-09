@@ -1,0 +1,43 @@
+# Utilizing DictionaryTools in a CrewAI Agent
+
+## Step 1: Initialization of Dictionary Tools
+
+Ensure the DictionaryTools class is correctly defined, equipped with the method to fetch word definitions from the dictionary API. After ensuring this setup, proceed with initializing the dictionary tools:
+
+```markdown
+# Assuming the DictionaryTools class has been defined as described
+
+# Initialize the Dictionary tools
+dictionary_tools = DictionaryTools()
+```
+
+## Step 2: Creating a Lexicographer Agent
+
+Construct an agent with the specific task of fetching definitions for given words. Assign the fetch_word_definition tool from the DictionaryTools to this agent:
+
+```markdown
+# Create an agent and assign the fetch_word_definition tool
+lexicographer_agent = Agent(
+    role='Lexicographer',
+    goal='Fetch definitions for given words',
+    tools=[dictionary_tools.fetch_word_definition]
+)
+```
+
+## Step 3: Example Usage of Tool
+
+Demonstrate the agent's capability to fetch word definitions by utilizing the assigned tool. Here's how to invoke the tool and display a word's definition:
+
+### Fetching Word Definition:
+
+```markdown
+# Example usage: Fetching the definition of a word
+word = "hello"
+definition = lexicographer_agent.tools[0](word)  # Invokes the fetch_word_definition tool
+print(f"Definition of {word}: {definition}")
+```
+
+## Conclusion
+
+Integrating DictionaryTools into a CrewAI agent allows for dynamic and specific interaction with external data sources, such as a dictionary API. This example underscores the power of CrewAI agents to conduct specialized tasks—here, lexicographical research—by leveraging custom tools tailored to precise needs.
+``` ````

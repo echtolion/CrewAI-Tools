@@ -1,22 +1,22 @@
-Utilizing VoiceRSS Tools in a CrewAI Agent
-Step 1: Initialization of VoiceRSS Tools
+# Utilizing VoiceRSS Tools in a CrewAI Agent
+
+## Step 1: Initialization of VoiceRSS Tools
 
 First, ensure the VoiceRSS text-to-speech tools are properly defined and ready to convert text into speech using the VoiceRSS API. Once you've implemented the tools as described earlier, initialize these tools in your environment:
 
-markdown
-
+```markdown
 # Assuming the voice_rss_text_to_speech and voice_rss_tts_chunks functions have been defined
 
 # Initialize the VoiceRSS text-to-speech tool for single and chunked texts
 voice_rss_single = voice_rss_text_to_speech
 voice_rss_chunks = voice_rss_tts_chunks
+```
 
-Step 2: Creating a VoiceRSS Analyst Agent
+## Step 2: Creating a VoiceRSS Analyst Agent
 
 Create an agent tasked with converting text into speech, capable of handling both short texts and larger texts by splitting them into manageable chunks. This agent will utilize the VoiceRSS tools to generate audio content from textual data.
 
-markdown
-
+```markdown
 # Create an agent and assign the VoiceRSS text-to-speech tools
 voice_rss_agent = Agent(
     role='VoiceRSS Analyst',
@@ -26,30 +26,33 @@ voice_rss_agent = Agent(
         voice_rss_chunks
     ]
 )
+```
 
-Step 3: Example Usage of Tools
+## Step 3: Example Usage of Tools
 
 To demonstrate the agent's capabilities with the VoiceRSS tools, we'll show how to use the tools to convert a short text to speech and handle a larger text by splitting it into chunks for speech conversion.
-Converting Short Text to Speech:
 
-markdown
+### Converting Short Text to Speech:
 
+```markdown
 # Example usage: Converting a short text to speech
 short_text = "Hello, world!"
 # This calls the voice_rss_text_to_speech tool
 audio_content = voice_rss_agent.tools[0](text=short_text, lang="en-us")
 # Process or save the audio content as needed
+```
 
-Handling Large Text by Splitting into Chunks:
+### Handling Large Text by Splitting into Chunks:
 
-markdown
-
+```markdown
 # Example usage: Converting a larger text to speech by splitting it into chunks
 large_text = "This is a large text that needs to be split into chunks..."
 # This calls the voice_rss_tts_chunks tool
 chunks_audio_contents = voice_rss_agent.tools[1](text=large_text, lang="en-us")
 # Process or save the chunked audio content as needed
+```
 
-Conclusion:
+## Conclusion
 
 By incorporating the VoiceRSS tools into a CrewAI agent's toolkit, the agent gains the ability to transform textual data into spoken audio, enhancing accessibility and user experience. This guide illustrates the adaptability and dynamic capabilities of CrewAI agents, enabling them to execute specialized tasks such as text-to-speech conversion with ease.
+``` ````
