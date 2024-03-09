@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyword Analysis Tool Usage Guide</title>
+</head>
+<body>
+    <h1>Keyword Analysis Tool Usage Guide for CrewAI</h1>
+    <p>This document provides a comprehensive guide on how to use the Keyword Analysis Tool within the CrewAI framework. This tool automates the process of keyword research, identifying high-volume, low-competition keywords from Excel files.</p>
+
+    <h2>Prerequisites</h2>
+    <ul>
+        <li>Python 3.6 or newer installed on your system.</li>
+        <li>Access to the CrewAI framework and understanding of its basic functionality.</li>
+        <li>Pandas library installed for data manipulation. Install via pip: <code>pip install pandas</code></li>
+        <li>Basic understanding of working with Excel files and JSON data structures.</li>
+    </ul>
+
+    <h2>Setup</h2>
+    <p>Ensure the Keyword Analysis Tool script is placed in an accessible directory within your CrewAI project. Modify the tool's parameters as necessary to fit your project's directory structure and data format.</p>
+
+    <h2>Using the Tool</h2>
+    <ol>
+        <li><strong>Configure Source and Output Directories:</strong> Specify the source directory containing your Excel files and the output directory where JSON analysis results will be saved.</li>
+        <li><strong>Execute the Script:</strong> Run the script using Python. The tool will automatically process each Excel file, identify relevant keywords, and save the findings in a structured JSON format.</li>
+        <li><strong>Review Results:</strong> Check the output directory for JSON files named after the original Excel files. Each JSON file contains an array of high-volume, low-competition keywords and their metrics.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <pre>
+        <code>
+        # Example command to run the Keyword Analysis Tool
+        python keyword_analysis_tool.py --source_directory "/path/to/excel/files" --output_base_directory "/path/to/output"
+        </code>
+    </pre>
+
+    <h2>Customization</h2>
+    <p>The Keyword Analysis Tool can be customized to handle different Excel file formats or to adjust the criteria for selecting keywords. Modify the <code>process_excel_file</code> function within the script to fit your specific requirements.</p>
+
+    <h2>Troubleshooting</h2>
+    <p>If you encounter issues while using the tool, ensure that the source and output directories exist and that Excel files are correctly formatted. Check for error messages in the console for further diagnostics.</p>
+
+    <h2>Support</h2>
+    <p>For additional support or to report bugs, please contact the CrewAI development team or refer to the CrewAI community forums.</p>
+</body>
+</html>

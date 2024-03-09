@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PPC Campaign Planner Usage Guide</title>
+</head>
+<body>
+    <h1>PPC Campaign Planner Usage Guide for CrewAI</h1>
+    <p>This document outlines how to use the PPC Campaign Planner within the CrewAI framework. This tool is designed to estimate the cost and effectiveness of PPC campaigns by analyzing keyword bid range data from Excel files.</p>
+
+    <h2>Workflow Overview</h2>
+    <ol>
+        <li><strong>Read Excel Files:</strong> Iterates through each Excel file in the specified directory, extracting keyword and bid data.</li>
+        <li><strong>Analyze Bid Range Data:</strong> Analyzes bid range data to calculate the average bid value and estimates the cost of targeting specific keywords.</li>
+        <li><strong>Estimate Campaign Effectiveness:</strong> Uses average monthly searches to estimate potential reach and assesses competition to gauge campaign effectiveness.</li>
+        <li><strong>Generate PPC Campaign Plans:</strong> Drafts detailed campaign plans, outlining the keyword, estimated cost, potential reach, and competition level.</li>
+        <li><strong>Save Campaign Plans:</strong> Saves the generated PPC campaign plans as JSON files in the specified output directory, organized by the original Excel file names.</li>
+    </ol>
+
+    <h2>Prerequisites</h2>
+    <ul>
+        <li>Python 3.6 or newer installed on your system.</li>
+        <li>Pandas library installed for data manipulation. Install via pip: <code>pip install pandas</code>.</li>
+        <li>Basic knowledge of PPC campaigns and SEO.</li>
+    </ul>
+
+    <h2>Setup</h2>
+    <p>Ensure the PPC Campaign Planner script is located within your CrewAI project directory. Configure the source and output directory paths based on your project's structure.</p>
+
+    <h2>Using the Tool</h2>
+    <ol>
+        <li>Configure the source directory containing Excel files and the output directory for saving campaign plans.</li>
+        <li>Execute the script with Python, specifying any necessary parameters.</li>
+        <li>Review the generated PPC campaign plans in the output directory, saved as JSON files.</li>
+    </ol>
+
+    <h2>Example Command</h2>
+    <pre><code># Example command to run the PPC Campaign Planner
+python ppc_campaign_planner.py --source_directory "/path/to/excel/files" --output_base_directory "/path/to/output"
+</code></pre>
+
+    <h2>Customization</h2>
+    <p>The PPC Campaign Planner can be customized to handle various Excel file formats or to refine the estimation logic for PPC campaign planning. Adjust the script as necessary to match your specific requirements.</p>
+
+    <h2>Troubleshooting</h2>
+    <p>If you encounter issues, ensure the Excel files are correctly formatted and the directories exist. Console error messages can provide insights into problems during execution.</p>
+
+    <h2>Support</h2>
+    <p>For additional support or to report bugs with the PPC Campaign Planner, contact the CrewAI support team or refer to the CrewAI community forums.</p>
+</body>
+</html>

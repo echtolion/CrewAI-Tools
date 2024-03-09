@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyword Difficulty Analysis Tool Usage Guide</title>
+</head>
+<body>
+    <h1>Keyword Difficulty Analysis Tool Usage Guide for CrewAI</h1>
+    <p>This document provides detailed instructions on how to use the Keyword Difficulty Analysis Tool within the CrewAI framework. The tool assesses the difficulty of ranking for specific keywords by analyzing comprehensive metrics including competition levels, search volumes, trend changes, bid range, and search intent.</p>
+
+    <h2>Workflow Overview</h2>
+    <ol>
+        <li><strong>Read Excel Files:</strong> Iterates through each Excel file in the specified directory, extracting essential keyword data.</li>
+        <li><strong>Calculate Keyword Difficulty:</strong> Applies an advanced scoring logic that considers average monthly searches, competition index, trend changes, bid range, and search intent to calculate a difficulty score for each keyword.</li>
+        <li><strong>Score Normalization and Ranking:</strong> Normalizes the difficulty scores for comparability and ranks the keywords based on their difficulty, from most to least challenging to rank for.</li>
+        <li><strong>Generate Difficulty Reports:</strong> Creates detailed reports outlining each keyword's difficulty score and rank, offering insights into the competitive landscape.</li>
+        <li><strong>Save Reports:</strong> Saves the difficulty reports as JSON files in a new directory named after the original Excel file within the output base directory.</li>
+    </ol>
+
+    <h2>Prerequisites</h2>
+    <ul>
+        <li>Python 3.6 or newer installed on your system.</li>
+        <li>Pandas library installed for data manipulation. Install via pip: <code>pip install pandas</code>.</li>
+        <li>Basic knowledge of SEO principles and keyword analysis.</li>
+    </ul>
+
+    <h2>Setup</h2>
+    <p>Ensure the Keyword Difficulty Analysis Tool script is located within your CrewAI project directory. Configure the source and output directory paths according to your project's structure.</p>
+
+    <h2>Using the Tool</h2>
+    <ol>
+        <li>Configure the source directory containing Excel files and the output directory for saving reports.</li>
+        <li>Execute the script with Python, specifying any necessary parameters.</li>
+        <li>Review the generated keyword difficulty reports in the output directory, saved as JSON files.</li>
+    </ol>
+
+    <h2>Example Command</h2>
+    <pre><code># Example command to run the Keyword Difficulty Analysis Tool
+python keyword_difficulty_analyzer.py --source_directory "/path/to/excel/files" --output_base_directory "/path/to/output"
+</code></pre>
+
+    <h2>Customization</h2>
+    <p>The Keyword Difficulty Analysis Tool can be customized to handle various Excel file formats or to refine the scoring logic based on your SEO strategy. Adjust the script as necessary to match your specific requirements.</p>
+
+    <h2>Troubleshooting</h2>
+    <p>If you encounter issues, ensure the Excel files are correctly formatted and the directories exist. Error messages in the console can provide insights into problems during execution.</p>
+
+    <h2>Support</h2>
+    <p>For additional support or to report bugs with the Keyword Difficulty Analysis Tool, contact the CrewAI support team or refer to the CrewAI community forums.</p>
+</body>
+</html>

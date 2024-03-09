@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Competitor Analysis Tool Usage Guide</title>
+</head>
+<body>
+    <h1>Competitor Analysis Tool Usage Guide for CrewAI</h1>
+    <p>This document outlines the steps for using the Competitor Analysis Tool within the CrewAI framework. The tool is designed to compare your website's keyword performance against that of your competitors, utilizing keyword data from Excel files.</p>
+
+    <h2>Workflow Overview</h2>
+    <ol>
+        <li><strong>Read Excel Files:</strong> The tool iterates through each Excel file in the specified directory, extracting keyword performance data for your website and competitors.</li>
+        <li><strong>Extract Keyword Performance Data:</strong> Data including average monthly searches, competition, and top of page bid ranges are extracted for analysis.</li>
+        <li><strong>Compare Keyword Performance:</strong> The tool compares your website's keyword metrics against those of competitors, identifying strengths and areas for improvement.</li>
+        <li><strong>Generate Comparison Reports:</strong> Based on the comparison, detailed reports are created, offering insights and actionable recommendations.</li>
+        <li><strong>Save Comparison Reports:</strong> The comparison reports are saved as JSON files in a new directory named after the original Excel file within the output base directory.</li>
+    </ol>
+
+    <h2>Prerequisites</h2>
+    <ul>
+        <li>Python 3.6 or newer installed on your system.</li>
+        <li>Pandas library installed for data manipulation. Install via pip: <code>pip install pandas</code>.</li>
+        <li>Understanding of SEO and PPC campaigns.</li>
+    </ul>
+
+    <h2>Setup</h2>
+    <p>Ensure the Competitor Analysis Tool script is located within your CrewAI project directory. Configure the source and output directory paths based on your project's structure.</p>
+
+    <h2>Using the Tool</h2>
+    <ol>
+        <li>Configure the source directory containing Excel files and the output directory for saving reports.</li>
+        <li>Execute the script with Python, specifying any necessary parameters.</li>
+        <li>Review the generated competitor analysis reports in the output directory, saved as JSON files.</li>
+    </ol>
+
+    <h2>Example Command</h2>
+    <pre><code># Example command to run the Competitor Analysis Tool
+python competitor_analysis_tool.py --source_directory "/path/to/excel/files" --output_base_directory "/path/to/output"
+</code></pre>
+
+    <h2>Customization</h2>
+    <p>The Competitor Analysis Tool can be customized to suit various Excel file formats or to refine the comparison logic. Adjust the script as necessary to match your specific analytical needs.</p>
+
+    <h2>Troubleshooting</h2>
+    <p>If you encounter issues, ensure the Excel files are correctly formatted and the directories exist. Error messages in the console can provide insights into problems during execution.</p>
+
+    <h2>Support</h2>
+    <p>For additional support or to report bugs with the Competitor Analysis Tool, contact the CrewAI support team or refer to the CrewAI community forums.</p>
+</body>
+</html>
