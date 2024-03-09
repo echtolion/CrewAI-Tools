@@ -1,0 +1,78 @@
+# CrewAI AssemblyAI Tools README
+
+This document provides guidance on utilizing the AssemblyAI Tools within the CrewAI framework for audio transcription, speaker identification, and other related tasks.
+
+## Overview
+
+The AssemblyAI Tools class is designed to interact with the AssemblyAI API, offering functionalities such as audio transcription, speaker identification, tracking transcription usage, and finding highlights within transcribed audio. This integration with CrewAI enables seamless usage of these functionalities within a broader set of tasks or workflows.
+
+## Requirements
+
+- Python 3.6+
+- requests library
+- Valid AssemblyAI API key
+
+## Setup
+
+Before you begin, ensure you have the requests library installed. If not, you can install it using pip:
+
+```bash
+pip install requests
+```
+
+You will also need a valid AssemblyAI API key. You can obtain one by signing up at AssemblyAI.
+
+## Initialization
+
+To use the tools, you first need to instantiate the AssemblyAITools class with your API key:
+
+```python
+from your_module import AssemblyAITools  # Ensure you replace 'your_module' with the actual module name.
+
+assembly_ai_tools = AssemblyAITools(api_key="your_assemblyai_api_key_here")
+```
+
+## Usage
+
+### Transcribing Audio
+
+To transcribe audio from a URL, use the `transcribe_audio` method. You can also pass additional parameters supported by AssemblyAI.
+
+```python
+audio_url = "https://example.com/audio.mp3"
+transcription_result = assembly_ai_tools.transcribe_audio(audio_url)
+print(transcription_result)
+```
+
+### Identifying Speakers
+
+After transcription, you can identify different speakers in the audio by providing the transcript ID to the `identify_speakers` method.
+
+```python
+transcript_id = "your_transcript_id_here"
+speakers_result = assembly_ai_tools.identify_speakers(transcript_id)
+print(speakers_result)
+```
+
+### Tracking Transcription Usage
+
+To track the cumulative transcription time used, the `track_usage` method automatically updates after each transcription, considering the length of the audio files processed.
+
+### Finding Highlights
+
+To find highlights within an audio file, ensure the 'auto_highlights' feature is enabled in your transcription request. The `find_highlights` method can then parse the transcription result for highlighted sections.
+
+### Error Handling
+
+Each method is designed to handle errors gracefully, returning a dictionary with error details upon failure. Ensure to check for the presence of an "error" key in the response.
+
+## Contributing
+
+To contribute to the development of these tools, please follow the standard git workflow:
+
+1. Fork the repository.
+2. Create your feature branch.
+3. Commit your changes.
+4. Push to the branch.
+5. Submit a pull request.
+``` ````
