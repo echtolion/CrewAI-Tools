@@ -1,0 +1,13 @@
+from crewai.tools import BaseTool
+import subprocess
+
+class RunProjectCommand(BaseTool):
+    name = "run_project_command"
+    description = "Executes a specified project command or script."
+
+    def run(self, project_path: str, command: list) -> str:
+        try:
+            subprocess.run(command, cwd=project_path, check=True)
+            return f"Command '{' '.join(command)}' executed successfully."
+        except subprocess.CalledProcessError as e:
+            return f"Error executing command: {e}"
